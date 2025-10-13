@@ -1,21 +1,39 @@
 package ua.opnu.algorithmictheory.LW1;
 
 public class SelectionSort {
-    public int[] selectionSort(int[] values) {
-       for (int i = 0; i < values.length - 1; i++) {
-           int minIndex = i;
-           for (int j = i + 1; j < values.length; j++) {
-               if (values[j] < values[minIndex]) {
-                   minIndex = j;
-               }
-           }
+    private int comparisons = 0;
+    private int assignments = 0;
+    private int swaps = 0;
 
-           if (minIndex != i) {
-               int temp = values[i];
-               values[i] = values[minIndex];
-               values[minIndex] = temp;
-           }
-       }
-        return  values;
+    public int[] selectionSort(int[] values) {
+        for (int i = 0; i < values.length - 1; i++) {
+            int minIndex = i;
+            assignments++;
+
+            for (int j = i + 1; j < values.length; j++) {
+                comparisons++;
+                if (values[j] < values[minIndex]) {
+                    minIndex = j;
+                    assignments++;
+                }
+            }
+
+            if (minIndex != i) {
+                int temp = values[i];
+                assignments++;
+                values[i] = values[minIndex];
+                assignments++;
+                values[minIndex] = temp;
+                assignments++;
+                swaps++;
+            }
+        }
+        return values;
+    }
+
+    public void printStats() {
+        System.out.println("Comparisons = " + comparisons);
+        System.out.println("Assignments = " + assignments);
+        System.out.println("Swaps = " + swaps);
     }
 }
