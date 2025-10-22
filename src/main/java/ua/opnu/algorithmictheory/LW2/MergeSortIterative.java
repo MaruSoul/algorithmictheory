@@ -66,8 +66,6 @@ public class MergeSortIterative {
             assignments++;
             values[left + i] = result[i];
         }
-
-
     }
 
     public void printStats() {
