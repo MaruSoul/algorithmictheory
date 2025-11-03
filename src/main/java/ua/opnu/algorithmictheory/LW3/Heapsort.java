@@ -21,6 +21,7 @@ public class Heapsort {
     public int[] buildMaxHeap(int[] arr) {
         int[] result = Arrays.copyOf(arr, arr.length);
         int n = result.length;
+        int step = 1;
 
         for (int j = 0; j < result.length; j++) {
             for (int i = n / 2 - 1; i >= 0; i--) {
@@ -28,11 +29,19 @@ public class Heapsort {
             }
 
             int indexLast = result.length - 1 - j;
-            int temp = result[indexLast];  this.assignments++;
-            result[indexLast] = result[0]; this.assignments++;
-            result[0] = temp;              this.assignments++;
+            if (indexLast > 0) {
+                System.out.println("Крок " + step++ + ": побудова купи");
+                getHeap(result);
 
-            n = result.length - 1 - j;
+                int temp = result[indexLast];  this.assignments++;
+                result[indexLast] = result[0]; this.assignments++;
+                System.out.print("Swap (" +   result[indexLast] + ", " + temp + ");    ");
+                result[0] = temp;              this.assignments++;
+                System.out.println(Arrays.toString(result));
+
+                n = result.length - 1 - j;
+            }
+
         }
 
         return result;
