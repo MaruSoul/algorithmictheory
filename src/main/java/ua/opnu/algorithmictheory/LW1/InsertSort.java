@@ -9,30 +9,36 @@ public class InsertSort {
     public int[] insertSort(int[] values) {
         for (int i = 1; i < values.length; i++) {
             System.out.println("-------------------------");
+            System.out.println("Ітерація " + i + ": (i=" + i + ")");
             int temp = values[i];
+            System.out.println("Елемент для вставки (key): " + temp);
+            System.out.println("Відсортована частина: " + Arrays.toString(Arrays.copyOfRange(values, 0, i)));
             assignments++;
 
             int j = i - 1;
             int shifts = 0;
 
             while (j >= 0) {
+                System.out.println("Порівняння: " + values[j] + " > " + temp);
                 comparisons++;
                 if (values[j] > temp) {
+                    System.out.println("True. Зсуваємо " + values[j] + " вправо.");
                     values[j + 1] = values[j];
                     assignments++;
                     j--;
                     shifts++;
                 } else {
+                    System.out.println("False. Цикл завершено.");
                     break;
                 }
             }
-
+            if (j < 0) {
+                System.out.println("Досягнуто початку масиву. Цикл завершено.");
+            }
+            System.out.println("Вставка " + temp + " на позицію " + (j + 1) + ".");
             values[j + 1] = temp;
             assignments++;
-            System.out.println("Ітерація i = " + i);
-            System.out.println("key = " + temp);
-            System.out.println("Зсуви = " + shifts);
-            System.out.println("Масив після ітерації: " + Arrays.toString(values));
+            System.out.println("Масив після ітерації " + i + ": " + Arrays.toString(values));
         }
         return values;
     }

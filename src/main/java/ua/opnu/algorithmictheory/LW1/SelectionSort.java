@@ -10,7 +10,11 @@ public class SelectionSort {
     public int[] selectionSort(int[] values) {
         for (int i = 0; i < values.length - 1; i++) {
             System.out.println("_________________________");
-            System.out.println("Ітерація: " + i);
+            System.out.print("Ітерація: " + i);
+            System.out.println(": (i=" + i + ")");
+            System.out.println("Поточний елемент (для обміну): values[" + i + "]" + " = " + values[i]);
+            System.out.println("Шукаємо мінімальний елемент у масиві: " + Arrays.toString(values));
+
             int minIndex = i;
             assignments++;
 
@@ -22,12 +26,14 @@ public class SelectionSort {
                 }
             }
 
-            System.out.println("minIndex: " + minIndex);
+            System.out.println("Знайдено мінімальний елемент: values[" + minIndex + "]" + " = " + values[minIndex]);
+            System.out.println("Обмін: ");
             String swap = "---";
             if (minIndex != i) {
                 int temp = values[i];
                 assignments++;
-                swap = temp + " <=> " +  values[minIndex];
+                swap = "values[" + i + "] " + "(" + values[minIndex] + ") <=> "
+                        + "values[" + minIndex + "] " + "(" + values[minIndex] + ");";
                 values[i] = values[minIndex];
                 assignments++;
                 values[minIndex] = temp;
@@ -41,8 +47,8 @@ public class SelectionSort {
     }
 
     public void printStats() {
-        System.out.println("Comparisons = " + comparisons);
-        System.out.println("Assignments = " + assignments);
-        System.out.println("Swaps = " + swaps);
+        System.out.println("Кількість порівнянь: " + comparisons);
+        System.out.println("Кількість присвоєнь: " + assignments);
+        System.out.println("Кількість обмінів: " + swaps);
     }
 }
